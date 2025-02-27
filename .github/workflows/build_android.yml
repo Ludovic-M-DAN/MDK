@@ -8,10 +8,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Set up Godot
         run: |
-          wget https://downloads.godotengine.org/4.3.3/Godot_v4.3.3-stable_linux.x86_64.zip
-          unzip Godot_v4.3.3-stable_linux.x86_64.zip
-          chmod +x Godot_v4.3.3-stable_linux.x86_64
-          mv Godot_v4.3.3-stable_linux.x86_64 godot
+          wget https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          unzip Godot_v4.3-stable_linux.x86_64.zip
+          chmod +x Godot_v4.3-stable_linux.x86_64
+          mv Godot_v4.3-stable_linux.x86_64 godot
       - name: Build Android APK
         run: |
           ./Godot_v4.3-stable_linux.x86_64 --headless --export "Android" build/android.apk
