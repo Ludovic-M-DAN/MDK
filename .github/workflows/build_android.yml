@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Godot
         run: |
           wget https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_linux.x86_64.zip
@@ -15,7 +15,7 @@ jobs:
         run: |
           ./Godot_v4.3-stable_linux.x86_64 --headless --export "Android" build/android.apk
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-apk
           path: build/android.apk
@@ -24,7 +24,7 @@ jobs:
           ./Godot_v4.3-stable_linux.x86_64 --path . --script res://generate_docs.gd
         working-directory: monsters-dna-&-kraft
       - name: Upload Documentation
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: documentation
           path: monsters-dna-&-kraft/doc/documentation.md
