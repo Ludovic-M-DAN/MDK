@@ -14,7 +14,13 @@ jobs:
           mv Godot_v4.3-stable_linux.x86_64 godot
       - name: Build Android APK
         run: |
+          if [ ! -f export_presets.cfg ]; then
+            echo "export_presets.cfg manquant. Création d’un preset par défaut..."
+            ./godot --headless --script res://create_export_preset.gd
+          fi
+          chmod -R u+w .
           ./godot --headless --export-debug "Android" build/android.apk
+        working-directory: .
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
@@ -23,9 +29,9 @@ jobs:
       - name: Generate Documentation
         run: |
           ./godot --path . --script res://generate_docs.gd
-        working-directory: monsters-dna-&-kraft
+        working-directory: .
       - name: Upload Documentation
         uses: actions/upload-artifact@v4
         with:
           name: documentation
-          path: monsters-dna-&-kraft/doc/documentation.md
+          path: doc/documentation.md
