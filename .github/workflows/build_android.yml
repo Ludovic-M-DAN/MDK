@@ -1,11 +1,11 @@
-name: Build Android APK and Generate Documentation
+nname: Build Android APK and Generate Documentation
 on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       - name: Set up Godot
         run: |
           wget https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
@@ -14,7 +14,7 @@ jobs:
           mv Godot_v4.3-stable_linux.x86_64 godot
       - name: Build Android APK
         run: |
-          ./Godot_v4.3-stable_linux.x86_64 --headless --export "Android" build/android.apk
+          ./godot --headless --export "Android" build/android.apk
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
@@ -22,7 +22,7 @@ jobs:
           path: build/android.apk
       - name: Generate Documentation
         run: |
-          ./Godot_v4.3-stable_linux.x86_64 --path . --script res://generate_docs.gd
+          ./godot --path . --script res://generate_docs.gd
         working-directory: monsters-dna-&-kraft
       - name: Upload Documentation
         uses: actions/upload-artifact@v4
