@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Android APK and Generate Documentation
 on: [push, pull_request]
 jobs:
   build:
@@ -19,3 +19,12 @@ jobs:
         with:
           name: android-apk
           path: build/android.apk
+      - name: Generate Documentation
+        run: |
+          ./Godot_v4.3-stable_linux.x86_64 --path . --script res://generate_docs.gd
+        working-directory: monsters-dna-&-kraft
+      - name: Upload Documentation
+        uses: actions/upload-artifact@v3
+        with:
+          name: documentation
+          path: monsters-dna-&-kraft/doc/documentation.md
