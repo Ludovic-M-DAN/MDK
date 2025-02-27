@@ -1,4 +1,4 @@
-nname: Build Android APK and Generate Documentation
+name: Build Android APK and Generate Documentation
 on: [push, pull_request]
 jobs:
   build:
